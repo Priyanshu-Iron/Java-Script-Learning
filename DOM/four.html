@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM | Four</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    <ul class="language">
+        <li>JavaScript</li>
+    </ul>
+</body>
+<script>
+    function addLanguage(LangName){
+        const li = document.createElement('li');
+        li.innerHTML = `${LangName}`
+        document.querySelector('.language').
+        appendChild(li)
+    }
+    addLanguage("Python")
+    addLanguage("Java")
+
+    function optimeaddLanguage(LangName){
+        const li = document.createElement('li');
+        li.appendChild(document.createTextNode(LangName))
+        document.querySelector('.language').appendChild(li)
+    }
+    optimeaddLanguage("Ruby")
+
+    // EDIT
+    const secondLanguage = document.querySelector("li:nth-child(2)")
+    const newli = document.createElement('li')
+    // console.log(newli);
+    newli.textContent = "C++"
+    secondLanguage.replaceWith(newli)
+
+    // EDIT
+    const FirstLanguage = document.querySelector("li:nth-child(1)")
+    FirstLanguage.outerHTML = '<li>TypeScript</li>'
+
+    // REMOVE
+    const removeLanguage = document.querySelector("li:last-child")
+    removeLanguage.remove()
+</script>
+</html>
