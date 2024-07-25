@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Request</title>
+</head>
+<body style="background-color: #212121;">
+    <button type = "submit" id="get_photo">GET PHOTO</button>
+    <div id="photo_container"></div>
+</body>
+<script>
+    const RequestUrl = 'https://api.github.com/users/priyanshu-iron'
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET',RequestUrl)
+    xhr.onreadystatechange = function(){
+        console.log(xhr.readyState);
+        if (xhr.readyState === 4) {
+            const data = JSON.parse(this.responseText);
+            console.log(data.following);
+            console.log(data.login);
+        }
+    }
+    xhr.send();
+    
+    const get = function() {
+        const RequestIMG = 'https://avatars.githubusercontent.com/u/81368657?v=4';
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', RequestIMG);
+        xhr.responseType = 'blob'; // Setting the response type to 'blob' for image data
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                const imgURL = URL.createObjectURL(xhr.response);
+                const img = document.createElement('img');
+                img.src = imgURL;
+                document.querySelector('#photo_container').appendChild(img);
+            } else {
+                console.error('Error fetching the image');
+            }
+        };
+        xhr.send();
+    };
+    document.querySelector('#get_photo').addEventListener('click', get);
+</script>
+</html>
